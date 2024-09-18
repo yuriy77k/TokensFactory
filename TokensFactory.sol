@@ -12,12 +12,12 @@ contract MockToken is ERC20 {
 contract TokensFactory {
 
     // create token contract and mint `amount` of tokens to caller
-    function createToken(string memory name, string memory symbol, uint256 amount) external {
-        new MockToken(name, symbol, amount, msg.sender);
+    function createToken(string memory name, string memory symbol, uint256 amount) external returns(address token){
+        token = new MockToken(name, symbol, amount, msg.sender);
     }
 
     // create token contract and mint 1 billion tokens to caller. Token symbol = name
-    function createToken1B(string memory name) external {
-        new MockToken(name, name, 1e9, msg.sender);
+    function createToken1B(string memory name) external returns(address token){
+        token = new MockToken(name, name, 1e9, msg.sender);
     }
 }
