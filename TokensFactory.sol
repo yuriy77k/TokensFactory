@@ -13,11 +13,11 @@ contract TokensFactory {
 
     // create token contract and mint `amount` of tokens to caller
     function createToken(string memory name, string memory symbol, uint256 amount) external returns(address token){
-        token = new MockToken(name, symbol, amount, msg.sender);
+        token = address(new MockToken(name, symbol, amount, msg.sender));
     }
 
     // create token contract and mint 1 billion tokens to caller. Token symbol = name
     function createToken1B(string memory name) external returns(address token){
-        token = new MockToken(name, name, 1e9, msg.sender);
+        token = address(new MockToken(name, name, 1e9, msg.sender));
     }
 }
